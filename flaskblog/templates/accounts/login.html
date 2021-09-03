@@ -1,0 +1,53 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center align-items-center my-5" style="height: 75vh">
+    <div class="card p-5" style="min-width: 50%;min-height: 50%;">
+        {% include 'shared/flash_msg.html' %}
+        <form method="POST" novalidate class="">
+            <fieldset>
+                <legend>Login</legend>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+
+            </fieldset>
+                <div class="form-group">
+                
+                    {{ form.submit(class="btn btn-outline-info") }}
+                    <small class="text-muted ml-2"><a href="{{ url_for('users.reset_request') }}">Reset password</a></small>
+                </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

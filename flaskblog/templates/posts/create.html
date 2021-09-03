@@ -1,0 +1,63 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<div class="row my-3" >
+    <div class="col-3">
+       {% include 'posts/partials/sidebar.html' %}
+    </div>
+    <div class="col-8 offset-1  card py-3" style="min-height: 100vh;">
+
+        <form method="post" novalidate class="">
+            <fieldset><legend>Create Post</legend>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }}
+                    {% if form.title.errors %}
+                        {{ form.title(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.content.label(class="form-control-label") }}
+                    {% if form.content.errors %}
+                        {{ form.content(class="form-control is-invalid",rows="10") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.content.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.content(class="form-control",rows="10") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.tags.label(class="form-control-label") }}
+                    {% if form.tags.errors %}
+                        {{ form.tags(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.tags.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.tags(class="form-control") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+{% endblock %}

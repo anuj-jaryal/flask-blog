@@ -1,0 +1,22 @@
+<div class="py-2">
+    <a href="{{ url_for('posts.new_post') }}" class="btn btn-primary w-100">New Post</a>
+</div>
+<hr />
+<nav class="navbar card">
+
+    <!-- Links -->
+    <ul class="navbar-nav w-100">
+    {% for tag in tags %}
+      <li class="nav-item">
+        <a class="nav-link" href="#">{{ tag.name }}</a>
+      </li>
+    {% endfor %}
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 3</a>
+      </li>
+    </ul>
+  
+  </nav>
